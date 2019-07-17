@@ -7,16 +7,26 @@ import { HttpService } from "../http.service";
   styleUrls: ["home.page.scss"]
 })
 export class HomePage implements OnInit {
-  results;
+  weathers;
+  city;
+  cityname;
+
   constructor(private httpService: HttpService) {}
 
   ngOnInit() {}
 
-  searchChanged(city) {
+  searchChanged() {
     // Call our service function which returns an Observable
-    this.httpService.searchData(city).subscribe(resp => {
-      console.log(resp);
-      this.results = resp;
+    this.httpService.searchData(this.city).subscribe(resp => {
+      this.weathers = resp["list"];
+      // this.cityname = resp["city"];
+      console.log(this.weathers);
+      // this.httpService.geoSearch(
+      //   this.results.coord.lat,
+      //   this.results.coord.lon
+      // );
+
+      // console.log(this.results.coord.lat, this.results.coord.lon);
     });
   }
 }

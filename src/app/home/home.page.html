@@ -11,11 +11,31 @@
   <input [(ngModel)]="city" />
   <button (click)="searchChanged()">Click</button>
 
-  <pre *ngIf="results">
-    Lat : {{ results.coord.lat }}
-    Lon : {{ results.coord.lon }}
+  <!-- Location : {{ cityname.name }} -->
 
+  <ion-list>
+    <ion-label>
+      -------Date ---------------------- Weather ------------------------
+      Temperature</ion-label
+    >
+  </ion-list>
 
+  <ion-list *ngFor="let weather of weathers" (click)="weatherDetails()">
+    <ion-item>
+      <ion-label>{{ weather.dt * 1000 | date }}</ion-label>
+      <ion-avatar>
+        <img
+          src="https://openweathermap.org/img/wn/{{
+            weather.weather[0].icon
+          }}@2x.png"
+        />
+      </ion-avatar>
+      <ion-label>{{ weather.weather[0].main }}</ion-label>
 
-  </pre>
+      <ion-label>{{ weather.temp.day - 273.15 | number: "0.2-2" }}</ion-label>
+      <ion-label>
+        <img />
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
