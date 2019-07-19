@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Weather Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-thumbnail slot="start">
+      <img
+        src="https://openweathermap.org/img/wn/{{
+          weather.weather[0].icon
+        }}@2x.png"
+      />
+    </ion-thumbnail>
+    <ion-card-header>
+      <ion-card-title>{{ city }}</ion-card-title>
+      <ion-card-subtitle>
+        Date : {{ weather?.dt * 1000 | date: "medium" }}</ion-card-subtitle
+      >
+      <ion-card-title> {{ weather.weather[0].main }}</ion-card-title>
+      <ion-card-title>
+        Temp : {{ weather.temp.day - 273.15 | number: "0.2-2" }} &deg;
+        C</ion-card-title
+      >
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>Humidity : {{ weather.humidity }}</p>
+      <p>Pressure : {{ weather.pressure }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
